@@ -1,0 +1,46 @@
+name: bmp-lab
+
+topology:
+  defaults:
+    kind: linux
+    image: quay.io/frrouting/frr:10.6.1
+    privileged: true
+
+  nodes:
+    as1-r1:
+      group: as65001
+      binds:
+        - configs/as1-r1:/etc/frr
+    as1-r2:
+      group: as65001
+      binds:
+        - configs/as1-r2:/etc/frr
+    as2-r3:
+      group: as65002
+      binds:
+        - configs/as2-r3:/etc/frr
+    as2-r4:
+      group: as65002
+      binds:
+        - configs/as2-r4:/etc/frr
+    as2-r5:
+      group: as65002
+      binds:
+        - configs/as2-r5:/etc/frr
+    as3-r6:
+      group: as65003
+      binds:
+        - configs/as3-r6:/etc/frr
+    as3-r7:
+      group: as65003
+      binds:
+        - configs/as3-r7:/etc/frr
+
+  links:
+    - endpoints: [ "as1-r1:eth1", "as1-r2:eth1" ]
+    - endpoints: [ "as1-r2:eth2", "as2-r3:eth1" ]
+    - endpoints: [ "as2-r3:eth2", "as2-r4:eth1" ]
+    - endpoints: [ "as2-r4:eth2", "as2-r5:eth1" ]
+    - endpoints: [ "as2-r5:eth2", "as2-r3:eth3" ]
+    - endpoints: [ "as2-r5:eth3", "as3-r6:eth2" ]
+    - endpoints: [ "as3-r6:eth1", "as3-r7:eth1" ]

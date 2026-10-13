@@ -1,0 +1,17 @@
+# FRR backup files
+*.sav
+
+# Containerlab generated runtime directories
+clab-*/
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# macOS metadata
+.DS_Store
+
+# Secrets and local environment files
+.env
+*.pem
+*.key
