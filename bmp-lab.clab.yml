@@ -35,7 +35,15 @@ topology:
       group: as65003
       binds:
         - configs/as3-r7:/etc/frr
-
+        
+    pmacct:
+      group: collector
+      image: pmacct/pmbmpd:latest
+      privileged: false
+      mgmt-ipv4: 172.20.20.100
+      binds:
+        - collector/pmacct/pmbmpd.conf:/etc/pmacct/pmbmpd.conf:ro
+        - collector/pmacct/data:/var/lib/pmacct
   links:
     - endpoints: [ "as1-r1:eth1", "as1-r2:eth1" ]
     - endpoints: [ "as1-r2:eth2", "as2-r3:eth1" ]
