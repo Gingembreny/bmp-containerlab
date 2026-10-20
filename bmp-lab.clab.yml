@@ -47,7 +47,7 @@ topology:
         
     netcalyx:
       group: collector
-      image: local/netcalyx-bmp:0.3.0
+      image: local/netcalyx-bmp:pr65
       privileged: false
       mgmt-ipv4: 172.20.20.101
 
